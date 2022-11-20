@@ -4,13 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install-dependencies": "npm run install-client && npm install",
-    "setup-production": "npm run install-client && npm run build-client && npm install",
-    "install-client": "cd client && npm install",
-    "build-client": "cd client && npm run build",
-    "server": "nodemon server --ignore client",
-    "client": "npm start --prefix client",
-    "start": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
+    "start": "node index.js",
+    "dev":"nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -37,7 +32,6 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "concurrently": "^7.5.0",
     "nodemon": "^2.0.20"
   }
 }
