@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.static("./public"));
 app.use(
-  expressFileUpload({ useTempFiles: true, tempFileDir: __dirname + "./tmp" })
+  expressFileUpload({ useTempFiles: true, tempFileDir: __dirname + "/tmp" })
 );
 
 // Routes
