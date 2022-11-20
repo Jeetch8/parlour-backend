@@ -16,6 +16,7 @@ const helmet = require("helmet");
 const { setOriginHeader } = require("./Middleware/OriginSetter");
 
 // Middleware
+app.use(setOriginHeader);
 app.use(
   cors({
     origin: ["https://parlour-frontend.vercel.app"],
@@ -31,7 +32,6 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.static("./public"));
 app.use(expressFileUpload({ tempFileDir: "/tmp/", useTempFiles: true }));
-app.use(setOriginHeader);
 
 // Routes
 
