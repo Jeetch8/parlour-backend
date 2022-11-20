@@ -65,7 +65,7 @@ exports.adminForgotPassword = async (req, res) => {
   }
 
   const uuid1 = uuid.v1();
-  const uuidLink = `http://localhost:3000/admin/passwordchange/${uuid1}`;
+  const uuidLink = `https://parlour-frontend.vercel.app/admin/passwordchange/${uuid1}`;
 
   const sendMail = await sendMailJetEmail({
     reciverEmail: email,

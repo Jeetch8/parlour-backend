@@ -19,7 +19,7 @@ const register = async (req, res) => {
     throw new CustomError.BadRequestError("Email already exists");
   }
   const uuid1 = uuid.v1();
-  const uuidLink = `http://localhost:3000/registration-success/${uuid1}`;
+  const uuidLink = `https://parlour-frontend.vercel.app/registration-success/${uuid1}`;
 
   const sendMail = await sendMailJetEmail({
     reciverEmail: email,
@@ -137,7 +137,7 @@ const forgotPasswordStep1 = async (req, res) => {
     );
   }
   const uuid1 = uuid.v1();
-  const uuidLink = `http://localhost:3000/newPassword/${uuid1}`;
+  const uuidLink = `https://parlour-frontend.vercel.app/newPassword/${uuid1}`;
 
   const sendMail = await sendMailJetEmail({
     reciverEmail: email,
