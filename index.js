@@ -18,7 +18,7 @@ const { setOriginHeader } = require("./Middleware/OriginSetter");
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://parlour-frontend.vercel.app"],
     credentials: true,
   })
 );
