@@ -13,7 +13,7 @@ const errorHandlerMiddleware = require("./Middleware/error-handler");
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
-const { setOriginHeader } = require("./middleware/OriginSetter");
+const { setOriginHeader } = require("./Middleware/OriginSetter");
 
 // Middleware
 app.use(
