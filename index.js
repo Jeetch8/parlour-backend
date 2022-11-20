@@ -31,7 +31,9 @@ app.use(express.json({ limit: "100mb" }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.static("./public"));
-app.use(expressFileUpload({ useTempFiles: true, tempFileDir: "./tmp" }));
+app.use(
+  expressFileUpload({ useTempFiles: true, tempFileDir: __dirname + "./tmp" })
+);
 
 // Routes
 app.use("/api/v1/admin", require("./Routes/Admin_Routes"));
