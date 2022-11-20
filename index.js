@@ -33,17 +33,12 @@ app.use(express.static("./public"));
 app.use(expressFileUpload());
 app.use(setOriginHeader);
 
-app.use(express.static(__dirname, "../client/build/index.html"));
 // Routes
 
 app.use("/api/v1/admin", require("./Routes/Admin_Routes"));
 app.use("/api/v1/blogs", require("./Routes/Blog_Routes"));
 app.use("/api/v1/user/auth", require("./Routes/UserAuth_Routes"));
 app.use("/api/v1/imageUpload", require("./Routes/ImageUpload_Route"));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-});
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
