@@ -22,6 +22,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(setOriginHeader);
 // app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
@@ -29,8 +30,7 @@ app.use(express.json({ limit: "100mb" }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.static("./public"));
-app.use(expressFileUpload({ useTempFiles: true }));
-app.use(setOriginHeader);
+app.use(expressFileUpload({ useTempFiles: true, tempFileDir: "./tmp" }));
 
 // Routes
 app.use("/api/v1/admin", require("./Routes/Admin_Routes"));
