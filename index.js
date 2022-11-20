@@ -19,8 +19,8 @@ const { setOriginHeader } = require("./Middleware/OriginSetter");
 app.use(
   cors({
     origin: ["https://parlour-frontend.vercel.app"],
-    // credentials: true,
-    // optionsSuccessStatus: 200,
+    credentials: "include",
+    optionsSuccessStatus: 200,
   })
 );
 // app.use(helmet());
@@ -30,7 +30,7 @@ app.use(express.json({ limit: "100mb" }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.static("./public"));
-app.use(expressFileUpload());
+app.use(expressFileUpload({ tempFileDir: "/tmp/", useTempFiles: true }));
 app.use(setOriginHeader);
 
 // Routes
