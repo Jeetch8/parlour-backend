@@ -23,7 +23,7 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
-app.use(setOriginHeader);
+// app.use(setOriginHeader);
 // app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
