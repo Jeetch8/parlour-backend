@@ -20,6 +20,7 @@ app.use(
   cors({
     origin: ["https://parlour-frontend.vercel.app"],
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 app.use(setOriginHeader);
