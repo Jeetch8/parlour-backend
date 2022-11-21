@@ -111,6 +111,7 @@ const login = async (req, res) => {
     userName: user.name,
     email: user.email,
     address: user.address,
+    token,
   });
 };
 

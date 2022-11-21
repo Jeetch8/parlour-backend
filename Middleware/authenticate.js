@@ -3,15 +3,19 @@ const User = require("../Models/User_Model");
 const CustomError = require("../errors");
 
 exports.checTokenAuthentication = async (req, res, next) => {
-  const cookies = req.cookies;
-  const userInfo = isTokenValid(cookies.token);
-  if (!userInfo) {
-    throw new CustomError.BadRequestError("Somthing went wrong");
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    throw new CustomError.UnauthenticatedError("No token provided");
   }
-  const userFound = await User.findById(cookies.userId);
-  // if (userFound.accountVerification !== "verified") {
-  //   throw new CustomError.UnauthorizedError("User not verified");
-  // }
+  const token = authHeader.split(" ")[1];
+  const userTokenInfo = await isTokenValid(token);
+  if (!token) {
+    throw new CustomError.BadRequestError("No token provided");
+  }
+  const userFound = await User.findById(userTokenInfo.userId);
+  if (userFound.accountVerification !== "verified") {
+    throw new CustomError.UnauthorizedError("User not verified");
+  }
   if (!userFound) {
     throw new CustomError.UnauthenticatedError("User unauthenticated");
   }
@@ -19,9 +23,12 @@ exports.checTokenAuthentication = async (req, res, next) => {
 };
 
 exports.checkAdminTokenAuthentication = async (req, res, next) => {
-  const cookies = req.cookies;
-  console.log(cookies);
-  const adminInfo = isTokenValid(cookies.token);
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    throw new CustomError.UnauthenticatedError("No token provided");
+  }
+  const token = authHeader.split(" ")[1];
+  const adminInfo = isTokenValid(token);
   if (!adminInfo) {
     throw new CustomError.BadRequestError("Somthing went wrong");
   }
