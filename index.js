@@ -20,8 +20,8 @@ app.use(setOriginHeader);
 app.use(
   cors({
     origin: ["https://parlour-frontend.vercel.app"],
-    credentials: "include",
     optionsSuccessStatus: 200,
+    // credentials: true,
   })
 );
 // app.use(helmet());

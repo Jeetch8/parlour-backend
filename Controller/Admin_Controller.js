@@ -47,6 +47,7 @@ exports.adminLogin = async (req, res) => {
     sameSite: "none",
     secure: true,
   });
+  res.header;
   res.status(201).json({
     success: true,
     profileImg: adminUserDoc.profileImg,

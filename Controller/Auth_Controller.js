@@ -87,24 +87,24 @@ const login = async (req, res) => {
 
   // Attaching cookies to reponse
   const oneDay = 1000 * 60 * 60 * 24;
-  res.cookie("token", token, {
-    httpOnly: false,
-    expires: new Date(Date.now() + oneDay),
-    sameSite: "none",
-    secure: true,
-  });
-  res.cookie("userId", `${user._id}`, {
-    httpOnly: false,
-    expires: new Date(Date.now() + oneDay),
-    sameSite: "none",
-    secure: true,
-  });
-  res.cookie("userName", `${user.name}`, {
-    httpOnly: false,
-    expires: new Date(Date.now() + oneDay),
-    sameSite: "none",
-    secure: true,
-  });
+  // res.cookie("token", token, {
+  //   httpOnly: false,
+  //   expires: new Date(Date.now() + oneDay),
+  //   sameSite: "none",
+  //   secure: true,
+  // });
+  // res.cookie("userId", `${user._id}`, {
+  //   httpOnly: false,
+  //   expires: new Date(Date.now() + oneDay),
+  //   sameSite: "none",
+  //   secure: true,
+  // });
+  // res.cookie("userName", `${user.name}`, {
+  //   httpOnly: false,
+  //   expires: new Date(Date.now() + oneDay),
+  //   sameSite: "none",
+  //   secure: true,
+  // });
   res.status(201).json({
     success: true,
     profileImg: user.profileImg,
