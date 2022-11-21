@@ -3,6 +3,13 @@ const path = require("path");
 const cloudinary = require("cloudinary");
 const fs = require("fs");
 
+cloudinary.config({
+  cloud_name: "wdsdf",
+  api_key: "396184844824448",
+  api_secret: "T4MWTzMBU8q_AYVM3y3byXECzsc",
+  secure: true,
+});
+
 const uploadImageLocal = async (req, res) => {
   if (!req.files) {
     throw new CustomError.BadRequestError("No File Uploaded");
