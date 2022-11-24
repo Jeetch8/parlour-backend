@@ -26,34 +26,13 @@ exports.adminLogin = async (req, res) => {
     userName: adminUserDoc.name,
     authorization: adminUserDoc.authorization,
   });
-  console.log(token);
-  // Attaching cookies to reponse
-  const oneDay = 1000 * 60 * 60 * 24;
-  res.cookie("token", token, {
-    httpOnly: false,
-    expires: new Date(Date.now() + oneDay),
-    sameSite: "none",
-    secure: true,
-  });
-  res.cookie("userId", `${adminUserDoc._id}`, {
-    httpOnly: false,
-    expires: new Date(Date.now() + oneDay),
-    sameSite: "none",
-    secure: true,
-  });
-  res.cookie("userName", `${adminUserDoc.name}`, {
-    httpOnly: false,
-    expires: new Date(Date.now() + oneDay),
-    sameSite: "none",
-    secure: true,
-  });
-  res.header;
   res.status(201).json({
     success: true,
     profileImg: adminUserDoc.profileImg,
     userName: adminUserDoc.name,
+    token,
+    role: "admin",
   });
-  res.status(201).json({ success: true });
 };
 
 exports.adminForgotPassword = async (req, res) => {

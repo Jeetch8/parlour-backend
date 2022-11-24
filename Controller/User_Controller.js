@@ -5,24 +5,21 @@ const User = require("../Models/User_Model");
 exports.makeCommentOnBlog = async (req, res) => {
   const { content } = req.body;
   const { blogId } = req.params;
-  const { userId } = req.cookies;
-  const comment = await Blog.findByIdAndUpdate(blogId, {
-    $push: { commentArray: [{ user: userId, commentText: content }] },
-  });
+  const { userId } = req.user;
+  const comment = await Blog.findByIdAndUpdate(
+    blogId,
+    {
+      $push: { commentArray: [{ user: userId, commentText: content }] },
+    },
+    { new: true }
+  );
+  console.log(comment);
   res.status(201).json({ success: true });
 };
 
 exports.likeBlog = async (req, res) => {
   const { blogId } = req.params;
   const { userId } = req.user;
-  const findPreLike = await Blog.find({
-    likes: {
-      $elemMatch: { $eq: userId },
-    },
-  });
-  if (findPreLike !== 0) {
-    throw new CustomError.BadRequestError("Double liking not allowed");
-  }
   const blog = await Blog.findByIdAndUpdate(blogId, {
     $push: { likes: userId },
   });
@@ -57,4 +54,10 @@ exports.getOwnProfile = async (req, res) => {
     "name email gender profileImg address"
   );
   res.status(200).json({ user });
+};
+
+exports.getSavedBlogs = async (req, res) => {
+  const { userId } = req.user;
+  const blogs = await User.findById(userId);
+  res.status(200).json({ savedBlogs: blogs });
 };

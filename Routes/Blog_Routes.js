@@ -11,6 +11,8 @@ const {
 const {
   makeCommentOnBlog,
   saveBlogToUser,
+  likeBlog,
+  getSavedBlogs,
 } = require("../Controller/User_Controller");
 const {
   checkAdminTokenAuthentication,
@@ -36,5 +38,7 @@ router.get(
 router.post("/blogComment/:blogId", checTokenAuthentication, makeCommentOnBlog);
 router.delete("/deleteBlog/:blogId", checkAdminTokenAuthentication, deleteBlog);
 router.post("/deleteComment", checkAdminTokenAuthentication, deleteComment);
+router.get("/likePost/:blogId", checTokenAuthentication, likeBlog);
+router.get("/savedblogs", checTokenAuthentication, getSavedBlogs);
 
 module.exports = router;

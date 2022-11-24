@@ -11,7 +11,7 @@ exports.getSingleBlog = async (req, res) => {
     path: "commentArray",
     populate: {
       path: "user",
-      select: "profileImg name",
+      select: "name profileImg",
     },
   });
   res.status(201).json({ blog });

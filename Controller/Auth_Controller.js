@@ -6,9 +6,9 @@ const { sendMailJetEmail } = require("../utils/SendEmail");
 const { logoutClearCookie } = require("../utils/AttachCookies");
 
 const register = async (req, res) => {
-  const { email, name, password, profileImg } = req.body;
+  const { email, name, password, profileImg, address } = req.body;
 
-  if (!email || !name || !password || !profileImg) {
+  if (!email || !name || !password || !profileImg || !address) {
     throw new CustomError.BadRequestError(
       "Please fill in all details to register"
     );
@@ -38,6 +38,7 @@ const register = async (req, res) => {
     password,
     profileImg,
     accountVerification: uuid1,
+    address,
   });
   const token = createJWT({ userId: user._id, userName: user.name });
   if (!token) {
@@ -78,7 +79,7 @@ const login = async (req, res) => {
     throw new CustomError.UnauthorizedError("Password was incorrect");
   }
   const token = await createJWT(
-    { userId: user._id, userName: user.name, role: user.authorization },
+    { userId: user._id, userName: user.name, role: "user" },
     "30d"
   );
   if (!token) {
@@ -105,13 +106,15 @@ const login = async (req, res) => {
   //   sameSite: "none",
   //   secure: true,
   // });
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     profileImg: user.profileImg,
     userName: user.name,
     email: user.email,
     address: user.address,
+    userId: user._id,
     token,
+    role: "user",
   });
 };
 

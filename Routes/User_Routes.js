@@ -19,5 +19,6 @@ router.post("/forgotPassword", forgotPasswordStep1);
 router.post("/forgotPassword2/:id", forgotPassStep2);
 router.post("/updateprofile", checTokenAuthentication, editProfile);
 router.get("/getOwnProfile", checTokenAuthentication, getOwnProfile);
+router.post("/editprofile", checTokenAuthentication, editProfile);
 
 module.exports = router;

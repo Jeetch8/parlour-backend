@@ -37,7 +37,7 @@ app.use(expressFileUpload({ tempFileDir: "/tmp/", useTempFiles: true }));
 
 app.use("/api/v1/admin", require("./Routes/Admin_Routes"));
 app.use("/api/v1/blogs", require("./Routes/Blog_Routes"));
-app.use("/api/v1/user/auth", require("./Routes/UserAuth_Routes"));
+app.use("/api/v1/user/auth", require("./Routes/User_Routes"));
 app.use("/api/v1/imageUpload", require("./Routes/ImageUpload_Route"));
 
 app.use(notFoundMiddleware);
