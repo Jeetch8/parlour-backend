@@ -43,7 +43,9 @@ const UserSchema = new mongoose.Schema({
     // 1. user:kiMmd7KeadhN59X
     // 2. admin:FJ5vERQckWlagJm
   },
-  savedBlogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
+  savedBlogs: [
+    { blogId: { type: mongoose.Schema.Types.ObjectId, ref: "Blog" } },
+  ],
 });
 
 UserSchema.pre("save", async function () {

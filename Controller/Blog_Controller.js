@@ -1,7 +1,9 @@
+const { statsRecorder } = require("../Middleware/StatisticsRecorder");
 const Blog = require("../Models/Blog_Models");
 
 exports.getAllBlogs = async (req, res) => {
   const blogs = await Blog.find({});
+  statsRecorder();
   res.status(201).json({ blogs });
 };
 

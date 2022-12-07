@@ -42,6 +42,7 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5000;
+mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_URL, () => {
   app.listen(port);
   console.log(`Server Running on ${port}`);
