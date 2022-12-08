@@ -28,18 +28,17 @@ exports.likeBlog = async (req, res) => {
 };
 
 exports.saveBlogToUser = async (req, res) => {
-  const { userId } = req.cookies;
+  const { userId } = req.user;
   const { blogId } = req.params;
-  const user = await User.findByIdAndUpdate(
-    userId,
+  const user = await User.findOneAndUpdate(
+    { _id: userId },
     {
       $push: {
-        savedBlogs: { blogId: blogId },
+        savedBlogs: { blogId: `${blogId}` },
       },
     },
     { new: true }
   );
-  console.log(user);
   res.status(200).json({ success: true });
 };
 
@@ -81,7 +80,7 @@ exports.getSavedBlogs = async (req, res) => {
   // ]);
   // blogs.populate("savedBlogs");
   const blogs = await User.findOne({ _id: userId }).populate({
-    path: "savedBlogs",
+    path: "savedBlogs.blogId",
   });
-  res.status(200).json({ savedBlogs: blogs });
+  res.status(200).json({ blogs });
 };

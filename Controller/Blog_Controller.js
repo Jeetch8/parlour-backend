@@ -36,3 +36,18 @@ exports.deleteComment = async (req, res) => {
   );
   res.status(200).json({ success: true });
 };
+
+exports.editBlog = async (req, res) => {
+  const { blogId } = req.params;
+  console.log(blogId);
+  const updateBlog = await Blog.findByIdAndUpdate(
+    blogId,
+    {
+      title: req.title,
+      HTMLBody: req.HTMLBody,
+      blogImg: req.blogImg,
+    },
+    { new: true }
+  );
+  res.status(200).json({ success: true, updateBlog });
+};

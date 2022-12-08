@@ -8,7 +8,7 @@ const { logoutClearCookie } = require("../utils/AttachCookies");
 const register = async (req, res) => {
   const { email, name, password, profileImg, address } = req.body;
 
-  if (!email || !name || !password || !profileImg || !address) {
+  if (!email || !name || !password || !address) {
     throw new CustomError.BadRequestError(
       "Please fill in all details to register"
     );

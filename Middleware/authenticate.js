@@ -8,7 +8,6 @@ exports.checTokenAuthentication = async (req, res, next) => {
     throw new CustomError.UnauthenticatedError("No token provided");
   }
   const token = authHeader.split(" ")[1];
-  console.log(token);
   const userTokenInfo = isTokenValid(token);
   if (!token) {
     throw new CustomError.BadRequestError("No token provided");
@@ -23,7 +22,6 @@ exports.checTokenAuthentication = async (req, res, next) => {
   req.user = {
     ...userTokenInfo,
   };
-  console.log(req.user);
   next();
 };
 
